@@ -1,34 +1,51 @@
-{% load static %}
-{% block message %}
-  {% autoescape on %}
-    <h2>Server Name: {{server_name}}</h2>
-    <h3>Current user: {{current_user}}</h3>
-    <h3>Last boot: {{boot_time}}</h3>
-    <hr/>
-    <h4>CPU usages</h4>
-    {% for key, value in cpu_usage.items %}
-        <p>{{key}} - {{ value }}</p>
-    {% endfor %}
-    <hr/>
-    <h4>RAM usages</h4>
-    {% for key, value in ram_usage.items %}
-        <p>{{key}} - {{ value }}</p>
-    {% endfor %}
-    <hr/>
-    <h4>Swap usages</h4>
-    {% for key, value in swap_usage.items %}
-        <p>{{key}} - {{ value }}</p>
-    {% endfor %}
-    <hr/>
-    <h4>Disk usages</h4>
-    {% for key, value in disk_usage.items %}
-        <p>{{key}} - {{ value }}</p>
-    {% endfor %}
-    <hr/>
-    <h4>Network usages</h4>
-    {% for key, value in network_usage.items %}
-        <p>{{key}} - {{ value }}</p>
-    {% endfor %}
-    <hr/>
-  {% endautoescape %}
-{% endblock %}
+{% extends 'base.html' %}{% load static %} {% block content %} {% autoescape on %}
+<style>
+
+</style>
+<div class="card p-3 m-4">
+<h1>Server Name: {{server_name}}</h1>
+<h3>Current user: {{current_user}}</h3>
+<h3>Last boot: {{boot_time}}</h3>
+</div>
+<div class="container p-3 m-4">
+    <div class="row m-2">
+        <div class="col card bg-blue p-4 m-1">
+<h4>CPU usages</h4>
+{% for key, value in cpu_usage.items %}
+<p>{{key}} - {{ value }}</p>
+{% endfor %}
+
+</div>
+<div class="col card bg-blue p-4 m-1">
+<h4>RAM usages</h4>
+{% for key, value in ram_usage.items %}
+<p>{{key}} - {{ value }}</p>
+{% endfor %}
+
+</div>
+<div class="col card bg-blue p-4 m-1">
+<h4 >Swap usages</h4>
+{% for key, value in swap_usage.items %}
+<p>{{key}} - {{ value }}</p>
+{% endfor %}
+
+</div>
+</div>
+<div class="row m-2">
+<div class="col-4 card bg-blue p-4 m-1">
+<h4>Disk usages</h4>
+{% for key, value in disk_usage.items %}
+<p>{{key}} - {{ value }}</p>
+{% endfor %}
+
+</div>
+<div class="col-4 card bg-blue p-4 m-1">
+<h4>Network usages</h4>
+{% for key, value in network_usage.items %}
+<p>{{key}} - {{ value }}</p>
+{% endfor %}
+
+</div>
+</div>
+</div>
+{% endautoescape %} {% endblock %}
