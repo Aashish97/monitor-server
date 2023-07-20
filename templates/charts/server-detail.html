@@ -1,0 +1,34 @@
+{% load static %}
+{% block message %}
+  {% autoescape on %}
+    <h2>Server Name: {{server_name}}</h2>
+    <h3>Current user: {{current_user}}</h3>
+    <h3>Last boot: {{boot_time}}</h3>
+    <hr/>
+    <h4>CPU usages</h4>
+    {% for key, value in cpu_usage.items %}
+        <p>{{key}} - {{ value }}</p>
+    {% endfor %}
+    <hr/>
+    <h4>RAM usages</h4>
+    {% for key, value in ram_usage.items %}
+        <p>{{key}} - {{ value }}</p>
+    {% endfor %}
+    <hr/>
+    <h4>Swap usages</h4>
+    {% for key, value in swap_usage.items %}
+        <p>{{key}} - {{ value }}</p>
+    {% endfor %}
+    <hr/>
+    <h4>Disk usages</h4>
+    {% for key, value in disk_usage.items %}
+        <p>{{key}} - {{ value }}</p>
+    {% endfor %}
+    <hr/>
+    <h4>Network usages</h4>
+    {% for key, value in network_usage.items %}
+        <p>{{key}} - {{ value }}</p>
+    {% endfor %}
+    <hr/>
+  {% endautoescape %}
+{% endblock %}

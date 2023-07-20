@@ -1,0 +1,8 @@
+{% load static %}
+{% block message %}
+  {% autoescape on %}
+    {% for server in servers %}
+        <a href="{% url 'detail' pk=server.id %}"">{{server.name}} - {{server.ip_address}}</a>
+    {% endfor %}
+  {% endautoescape %}
+{% endblock %}

@@ -1,0 +1,10 @@
+AWS = "aws"
+DIGITAL_OCEAN = "digital_ocean"
+DATAHUB = "datahub"
+INTERNAL = "internal"
+DEPLOYMENT_SERVER_CHOICES = (
+    (AWS, AWS),
+    (DIGITAL_OCEAN, DIGITAL_OCEAN),
+    (DATAHUB, DATAHUB),
+    (INTERNAL, INTERNAL)
+)
