@@ -1,6 +1,6 @@
 from django.db import models
 from .constants import DEPLOYMENT_SERVER_CHOICES
-from .helpers import pretty_display
+from .helpers import pretty_display_specs
 
 
 class BaseModel(models.Model):
@@ -36,19 +36,19 @@ class BaseUsageDetail(BaseModel):
     
     @property
     def display_total(self):
-        return pretty_display(self.total)
+        return pretty_display_specs(self.total)
     
     @property
     def display_used(self):
-        return pretty_display(self.used)
+        return pretty_display_specs(self.used)
 
     @property
     def display_free(self):
-        return pretty_display(self.free)
+        return pretty_display_specs(self.free)
     
     @property
     def display_percent(self):
-        return pretty_display(self.free)
+        return pretty_display_specs(self.free)
     
 
 # Create your models here.
@@ -69,7 +69,7 @@ class RAMDetail(BaseUsageDetail):
     
     @property
     def display_available(self):
-        return pretty_display(self.available)
+        return pretty_display_specs(self.available)
     
 
 class SwapDetail(BaseUsageDetail):

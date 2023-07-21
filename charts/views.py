@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import get_object_or_404
 from .models import Server, CPUDetail, RAMDetail, SwapDetail, DiskUsageDetail, NetworkUsage, OtherDetail
-from .helpers import create_server_detail_according_to_class, create_server_other_details
+from .helpers import create_server_detail_according_to_class, create_server_other_details, humanize_interval
 
 
 def show_stats(request):
@@ -28,9 +28,9 @@ def show_server_detail(request, pk):
         "current_user": other_detail.user,
         "boot_time": other_detail.boot_time,
         "cpu_usage": {
-            "User Time": cpu_detail.user_time,
-            "System Time": cpu_detail.system_time,
-            "Idle Time": cpu_detail.idle_time,
+            "User Time": humanize_interval(cpu_detail.user_time),
+            "System Time": humanize_interval(cpu_detail.system_time),
+            "Idle Time": humanize_interval(cpu_detail.idle_time),
             "Core Count": cpu_detail.cpu_count,
             'CPU usage percent': cpu_detail.cpu_percentage
         },
