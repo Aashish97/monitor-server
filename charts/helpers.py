@@ -17,3 +17,7 @@ def create_server_detail_according_to_class(klass, server, data):
 def pretty_display(value):
         value = round(value / (1024 * 1024), 2)
         return f"{value} MB" if value < 1000 else f"{round(value/1024, 2)} GB"
+    
+    
+def get_class_name_from_instance(instance):
+    return instance._meta.object_name
