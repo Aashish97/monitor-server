@@ -1,5 +1,6 @@
 from django.db import models
 from .constants import DEPLOYMENT_SERVER_CHOICES
+from .helpers import pretty_display
 
 
 class BaseModel(models.Model):
@@ -33,6 +34,22 @@ class BaseUsageDetail(BaseModel):
     def __str__(self):
         return f"{self.server} created at {self.created_at}"
     
+    @property
+    def display_total(self):
+        return pretty_display(self.total)
+    
+    @property
+    def display_used(self):
+        return pretty_display(self.used)
+
+    @property
+    def display_free(self):
+        return pretty_display(self.used)
+    
+    @property
+    def display_percent(self):
+        return pretty_display(self.free)
+    
 
 # Create your models here.
 class CPUDetail(BaseModel):
@@ -49,6 +66,10 @@ class CPUDetail(BaseModel):
 
 class RAMDetail(BaseUsageDetail):
     available = models.FloatField()
+    
+    @property
+    def display_available(self):
+        return pretty_display(self.available)
     
 
 class SwapDetail(BaseUsageDetail):
