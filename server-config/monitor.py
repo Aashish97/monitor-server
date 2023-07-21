@@ -70,7 +70,7 @@ def get_process():
     
 
 def monitor_server():
-    URL = "http://192.168.100.22/server-details"
+    URL = "http://127.0.0.1:8085/server-details"
     data = {
         "server": "Localhost",     
         "cpu_details": get_cpu_details(),
