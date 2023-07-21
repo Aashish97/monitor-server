@@ -1,6 +1,7 @@
 #!/bin/bash
 source venv/bin/activate
 
-pip install psutil requests
-
-python monitor.py
+while true; do
+    python monitor.py;
+    sleep 10;
+done
