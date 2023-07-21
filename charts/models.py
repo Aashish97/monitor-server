@@ -44,7 +44,7 @@ class BaseUsageDetail(BaseModel):
 
     @property
     def display_free(self):
-        return pretty_display(self.used)
+        return pretty_display(self.free)
     
     @property
     def display_percent(self):
