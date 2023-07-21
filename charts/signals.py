@@ -17,10 +17,10 @@ def send_warning_mail(sender, **kwargs):
     usage_percent = instance.percent
     if instance.percent > 90:
         send_mail(
-            f"{class_name_excluding_detail} almost full",
-            f"{class_name_excluding_detail} is {usage_percent} %. Please free up some space.",
+            f"{class_name_excluding_detail} of {instance.server} almost full",
+            f"{class_name_excluding_detail} for {instance.server} is {usage_percent} %. Please free up some space.",
             settings.DEFAULT_FROM_EMAIL,
-            [settings.EMAIL_RECIPIENT],
+            settings.EMAIL_RECIPIENT,
             fail_silently=False,
             html_message=None
         )

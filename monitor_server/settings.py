@@ -103,7 +103,7 @@ EMAIL_PORT = os.environ.get('EMAIL_PORT', '2525')
 DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER', 'admin@realhrsoft.com')
 DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', 'noreply@realhrsoft.com')
 EMAIL_USE_TLS = True 
-EMAIL_RECIPIENT = os.environ.get('EMAIL_RECIPIENT', 'noreply@realhrsoft.com')
+EMAIL_RECIPIENT = eval(os.environ.get('EMAIL_RECIPIENT', ['noreply@realhrsoft.com']))
 
 
 # Password validation
