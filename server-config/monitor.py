@@ -7,7 +7,7 @@ def get_cpu_details():
         "system_time": getattr(cpu_times, 'system', None),
         "idle_time": getattr(cpu_times, 'idle', None),
         "cpu_percentage": psutil.cpu_percent(interval=1, percpu=True),
-        "cpu_count": psutil.cpu_count(logical=False)
+        "cpu_count": psutil.cpu_count()
     }
     
     
