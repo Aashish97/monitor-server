@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 import os
 from pathlib import Path
+from dotenv import load_dotenv
+
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,16 +25,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-5vj=lvq)e^6(+$@#7z48v4al85mz#oj^5qb3*sq_=%=fw2xt@h'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'HFJFHFUJKklhsalkjhslakdjgf889898324298')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 CORS_ORIGIN_ALLOW_ALL = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = eval(os.environ.get('ALLOWED_HOSTS', '["*"]'))
 
-CSRF_TRUSTED_ORIGINS = ['http://192.168.100.22']
+CSRF_TRUSTED_ORIGINS = eval(os.environ.get('CSRF_TRUSTED_ORIGINS', '["*"]'))
 
 
 # Application definition
@@ -84,13 +88,22 @@ WSGI_APPLICATION = 'monitor_server.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'monitordb',
-        'USER': 'aashish',
-        'PASSWORD': 'aashish',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': os.environ.get('DATABASE_NAME', None),
+        'USER': os.environ.get('DATABASE_USER', None),
+        'PASSWORD': os.environ.get('DATABASE_PASSWORD', None),
+        'HOST': os.environ.get('DATABASE_HOST', 'localhost'),
+        'PORT': os.environ.get('DATABASE_PORT', '5432'),
     },
 }
+
+EMAIL_HOST = os.environ.get('EMAIL_HOST', 'smtp.mailtrap.io')
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', '73d8bce4fc587e')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', 'a1aa090d71c40f')
+EMAIL_PORT = os.environ.get('EMAIL_PORT', '2525')
+DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER', 'admin@realhrsoft.com')
+DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', 'noreply@realhrsoft.com')
+EMAIL_USE_TLS = True 
+EMAIL_RECIPIENT = os.environ.get('EMAIL_RECIPIENT', 'noreply@realhrsoft.com')
 
 
 # Password validation
