@@ -39,4 +39,3 @@ docker/env_files
 venv/
 # Create a symbolic link with "ln -s path/to/.venv venv"
 venv
-static/
