@@ -1,52 +1,134 @@
 {% extends 'base.html' %}{% load static %} {% block content %} {% autoescape on %}
-<style>
+<div class="pagetitle">
+  <h1>Server Stats</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+      <li class="breadcrumb-item active"><a href="{% url 'show_stats' %}">Dashboard</a></li>
+      <li class="breadcrumb-item active">{{server_name}}</li>
+    </ol>
+  </nav>
+</div><!-- End Page Title -->
 
-</style>
-<div class="card p-3 m-4">
-<h1>Server Name: {{server_name}}</h1>
-<h3>Server IP: {{server_ip}}</h3>
-<h3>Current user: {{current_user}}</h3>
-<h3>Last boot: {{boot_time}}</h3>
-</div>
-<div class="container p-3 m-4">
-    <div class="row m-2">
-        <div class="col card bg-blue p-4 m-1">
-<h4>CPU usages</h4>
-{% for key, value in cpu_usage.items %}
-<p>{{key}} - {{ value }}</p>
-{% endfor %}
+<section class="section dashboard">
+  <div class="row">
+    <div class="col-12">
+      <div class="card info-card sales-card">
+        <div class="card-body">
+          <h5 class="card-title">Server Details</h5>
+          <div class="d-flex justify-content-between align-items-center flex-wrap">
+            <div class="ps-3">
+              <span class="text-primary small pt-1 fw-bold">Server Name:</span>
+              <h4 class="text-black-50">{{server_name}}</h4>
+            </div>
+            <div class="ps-3">
+              <span class="text-primary small pt-1 fw-bold">Server IP:</span>
+              <h4 class="text-black-50">{{server_ip}}</h4>
+            </div>
+            <div class="ps-3">
+              <span class="text-primary small pt-1 fw-bold">Current user:</span>
+              <h4 class="text-black-50">{{current_user}}</h4>
+            </div>
+            <div class="ps-3">
+              <span class="text-primary small pt-1 fw-bold">Last boot:</span>
+              <h4 class="text-black-50">{{boot_time}}</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Stats Card -->
+    <div class="col-xxl-4 col-md-6">
+      <div class="card info-card sales-card">
+        <div class="card-body">
+          <h5 class="card-title">CPU Details</h5>
+          {% for key, value in cpu_usage.items %}
+          <div class="d-flex align-items-center">
+            <div class="ps-3">
+              <span class="text-secondary small pt-1 fw-bold">{{key}}</span>
+              <h4 class="text-black-50">{{ value }}</h4>
 
-</div>
-<div class="col card bg-blue p-4 m-1">
-<h4>RAM usages</h4>
-{% for key, value in ram_usage.items %}
-<p>{{key}} - {{ value }}</p>
-{% endfor %}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <!-- Stats Card End -->
+    <!-- Stats Card -->
+    <div class="col-xxl-4 col-md-6">
 
-</div>
-<div class="col card bg-blue p-4 m-1">
-<h4 >Swap usages</h4>
-{% for key, value in swap_usage.items %}
-<p>{{key}} - {{ value }}</p>
-{% endfor %}
+      <div class="card info-card sales-card">
+        <div class="card-body">
+          <h5 class="card-title">Ram Usage</h5>
+          {% for key, value in ram_usage.items %}
+          <div class="d-flex align-items-center">
+            <div class="ps-3">
+              <span class="text-secondary small pt-1 fw-bold">{{key}}</span>
+              <h4 class="text-black-50">{{ value }}</h4>
 
-</div>
-</div>
-<div class="row m-2">
-<div class="col-4 card bg-blue p-4 m-1">
-<h4>Disk usages</h4>
-{% for key, value in disk_usage.items %}
-<p>{{key}} - {{ value }}</p>
-{% endfor %}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
 
-</div>
-<div class="col-4 card bg-blue p-4 m-1">
-<h4>Network usages</h4>
-{% for key, value in network_usage.items %}
-<p>{{key}} - {{ value }}</p>
-{% endfor %}
+    </div>
+    <!-- Stats Card End -->
+    <!-- Stats Card -->
+    <div class="col-xxl-4 col-md-6 d-flex align-items-stretch">
+      <div class="card info-card sales-card w-100" style="padding-bottom: 30px;">
+        <div class="card-body">
+          <h5 class="card-title">Swap usages</h5>
+          {% for key, value in swap_usage.items %}
+          <div class="d-flex align-items-center">
+            <div class="ps-3">
+              <span class="text-secondary small pt-1 fw-bold">{{key}}</span>
+              <h4 class="text-black-50">{{ value }}</h4>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <!-- Stats Card End -->
+    <!-- Stats Card -->
+    <div class="col-xxl-4 col-md-6">
+      <div class="card info-card sales-card">
+        <div class="card-body">
+          <h5 class="card-title">Disk Usage</h5>
+          {% for key, value in disk_usage.items %}
+          <div class="d-flex align-items-center">
+            <div class="ps-3">
+              <span class="text-secondary small pt-1 fw-bold">{{key}}</span>
+              <h4 class="text-black-50">{{ value }}</h4>
 
-</div>
-</div>
-</div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <!-- Stats Card End -->
+    <!-- Stats Card -->
+    <div class="col-xxl-4 col-md-6">
+      <div class="card info-card sales-card">
+        <div class="card-body">
+          <h5 class="card-title">Network usages</h5>
+          {% for key, value in network_usage.items %}
+          <div class="d-flex align-items-center">
+            <div class="ps-3">
+              <span class="text-secondary small pt-1 fw-bold">{{key}}</span>
+              <h4 class="text-black-50">{{ value }}</h4>
+
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <!-- Stats Card End -->
+  </div>
+</section>
+
 {% endautoescape %} {% endblock %}
